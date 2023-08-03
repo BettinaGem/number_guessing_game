@@ -53,7 +53,7 @@ echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_
 
 if [[ -z $USERSQL ]]
 then
- echo "Welcome, $USER ! It looks like this is your first time here."
+ echo "Welcome, $USER! It looks like this is your first time here."
  INSERT_USER=$($PSQL "INSERT INTO users(username) VALUES('$USER')")
  USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USER'")
  GUESS_MENU
@@ -61,7 +61,7 @@ else
  USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USER'")
  GAMESPLAYED=$($PSQL "SELECT games_played FROM users WHERE user_id='$USER_ID'")
  BESTPLAYED=$($PSQL "SELECT MIN(guesses) FROM games WHERE user_id='$USERSQL'")
- echo "Welcome back, $USER ! You have played $GAMESPLAYED games, and your best game took $BESTPLAYED guesses."
+ echo "Welcome back, $USER! You have played $GAMESPLAYED games, and your best game took $BESTPLAYED guesses."
  GUESS_MENU
 fi
 
