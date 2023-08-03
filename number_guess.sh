@@ -17,7 +17,7 @@ then
 else
  if [[ -z $GAMESPLAYED ]]
  then
-  NUMBER_OF_GAME=1
+  NUMBER_OF_GAME=0
  else
   NUMBER_OF_GAME=$GAMESPLAYED
  fi
@@ -48,7 +48,7 @@ done
 echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
  INSERT_NUMBER_OF_GUESS=$($PSQL "INSERT INTO games(guesses,user_id) VALUES($NUMBER_OF_GUESSES,$USER_ID)")
  NUMBER_OF_GAME=$(( $NUMBER_OF_GAME + 1 ))
- INSERT_NUMBER_OF_GAME=$($PSQL "INSERT INTO users(games_played) VALUES($NUMBER_OF_GAME)")
+ INSERT_NUMBER_OF_GAME=$($PSQL "UPDATE users SET games_played = '$NUMBER_OF_GAME' ")
 }
 
 if [[ -z $USERSQL ]]
@@ -64,6 +64,8 @@ else
  echo "Welcome back, $USER! You have played $GAMESPLAYED games, and your best game took $BESTPLAYED guesses."
  GUESS_MENU
 fi
+
+
 
 
 
